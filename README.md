@@ -68,7 +68,7 @@ Migrar los 10 servidores a la nube **sin interrumpir la operación**, asegurando
 | Diseño de red y conectividad con la nube | |
 | Migración por oleadas, incluido el servidor de Power BI y su gateway | |
 | Pruebas con usuarios, corte final y apagado de los servidores on-premise | |
-| Rediseño o reprogramación de los sistemas | |
+| Rediseño y reprogramación de los sistemas | |
 
 ---
 
