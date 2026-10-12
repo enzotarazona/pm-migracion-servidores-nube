@@ -62,12 +62,13 @@ Migrar los 10 servidores a la nube **sin interrumpir la operación**, asegurando
 
 | Incluido | Fuera de alcance |
 |---|---|
-| Revisión técnica de los 10 servidores | Rediseño o reprogramación de los sistemas |
+| Revisión técnica de los 10 servidores | Migración de estaciones de trabajo de usuarios |
 | Actualización de versión en servidores no compatibles | Cambio de proveedor de internet |
-| Instalación de la app de migración en cada servidor | Migración de estaciones de trabajo de usuarios |
+| Instalación de la app de migración en cada servidor | |
 | Diseño de red y conectividad con la nube | |
 | Migración por oleadas, incluido el servidor de Power BI y su gateway | |
 | Pruebas con usuarios, corte final y apagado de los servidores on-premise | |
+| Rediseño o reprogramación de los sistemas | |
 
 ---
 
