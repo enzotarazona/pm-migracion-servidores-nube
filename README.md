@@ -5,9 +5,10 @@
 ![Equipo](https://img.shields.io/badge/equipo-4%20personas-6b7280)
 ![Power BI](https://img.shields.io/badge/Power%20BI-gateway-F2C811?logo=powerbi&logoColor=black)
 ![Cloud](https://img.shields.io/badge/migraci%C3%B3n-cloud-0078D4)
+![Visual Studio](https://img.shields.io/badge/VS%202010%20%E2%86%92%202019-5C2D91?logo=visualstudio&logoColor=white)
 
 > **Proyecto · Dirección de Proyectos de TI**
-> Migración de 10 servidores on-premise a la nube, incluido el servidor de Power BI con su gateway de datos, con revisión técnica previa, actualización de versión en los servidores no compatibles y migración por oleadas sin detener la operación.
+> Migración de 10 servidores on-premise a la nube, incluido el servidor de Power BI con su gateway de datos, con revisión técnica previa, actualización de versión en los servidores no compatibles, **rediseño y reprogramación de los procesos batch y servicios de Visual Studio 2010 a Visual Studio 2019**, y migración por oleadas sin detener la operación.
 
 <!--
   CÓMO USAR ESTE ARCHIVO
@@ -23,9 +24,9 @@
 |---|---|
 | **Rol** | Líder de proyecto |
 | **Sector** | Operador logístico (aduanas, almacén y transporte) |
-| **Equipo** | 3 programadores (revisión de servidores) y 1 especialista de redes |
-| **Alcance** | 10 servidores on-premise, incluido el servidor de Power BI con el gateway de datos |
-| **Duración planificada** | 6 semanas (27 días hábiles) |
+| **Equipo** | 3 programadores (revisión de servidores y reprogramación) y 1 especialista de redes |
+| **Alcance** | 10 servidores on-premise, incluido el servidor de Power BI con el gateway de datos, y la migración de procesos batch y servicios de Visual Studio 2010 a 2019 |
+| **Duración planificada** | 6 semanas (28 días hábiles) |
 | **Metodología** | Plan por fases con migración por oleadas y control con ruta crítica |
 
 <!-- COMPLETAR:
@@ -39,7 +40,7 @@
 
 La empresa operaba con **10 servidores on-premise** que soportaban sus sistemas de aduanas, logística y almacén, además del servidor de **Power BI**, donde estaba instalado el **gateway de datos** que alimentaba los reportes de gerencia.
 
-Mantener esa infraestructura implicaba costos de hardware, riesgo de fallas físicas y poca flexibilidad para crecer. La migración a la nube tenía una complicación adicional: **no todos los servidores estaban en condiciones de migrarse directamente**, porque algunos tenían versiones de sistema operativo no compatibles con el proceso de migración.
+Mantener esa infraestructura implicaba costos de hardware, riesgo de fallas físicas y poca flexibilidad para crecer. La migración a la nube tenía una complicación adicional: **no todos los servidores estaban en condiciones de migrarse directamente**, porque algunos tenían versiones de sistema operativo no compatibles con el proceso de migración. Además, varios **procesos batch y servicios** estaban desarrollados en **Visual Studio 2010**, sobre versiones antiguas de .NET, y necesitaban modernizarse para funcionar en los nuevos servidores.
 
 <!-- COMPLETAR: si recuerdas el motivo principal (fin de soporte del hardware, costos, continuidad
      del negocio, una falla previa), agrégalo aquí. -->
@@ -48,10 +49,11 @@ Mantener esa infraestructura implicaba costos de hardware, riesgo de fallas fís
 
 ## 🧭 Objetivo
 
-Migrar los 10 servidores a la nube **sin interrumpir la operación**, asegurando que los sistemas y los reportes de Power BI siguieran funcionando igual o mejor después de la migración.
+Migrar los 10 servidores a la nube **sin interrumpir la operación**, modernizar los procesos batch y servicios para que funcionen en la nueva plataforma, y asegurar que los sistemas y los reportes de Power BI siguieran funcionando igual o mejor después de la migración.
 
 **Criterios de éxito:**
 - Los 10 servidores operando en la nube.
+- Procesos batch y servicios migrados a Visual Studio 2019 y ejecutándose sin errores en los nuevos servidores.
 - Sistemas validados por los usuarios después de cada oleada.
 - Reportes de Power BI actualizándose con normalidad a través del gateway migrado.
 - Sin pérdida de información y con un plan de vuelta atrás disponible en cada paso.
@@ -62,20 +64,20 @@ Migrar los 10 servidores a la nube **sin interrumpir la operación**, asegurando
 
 | Incluido | Fuera de alcance |
 |---|---|
-| Revisión técnica de los 10 servidores | Migración de estaciones de trabajo de usuarios |
+| Revisión técnica de los 10 servidores | Rediseño de los sistemas web y aplicaciones de usuario |
 | Actualización de versión en servidores no compatibles | Cambio de proveedor de internet |
+| Rediseño y reprogramación de procesos batch y servicios de Visual Studio 2010 a 2019 | Migración de estaciones de trabajo de usuarios |
 | Instalación de la app de migración en cada servidor | |
 | Diseño de red y conectividad con la nube | |
 | Migración por oleadas, incluido el servidor de Power BI y su gateway | |
 | Pruebas con usuarios, corte final y apagado de los servidores on-premise | |
-| Rediseño y reprogramación de los sistemas | |
 
 ---
 
 ## 👤 Mi rol
 
 - **Planificación:** definí el alcance, la EDT, el cronograma con ruta crítica, la matriz RACI y el plan de oleadas.
-- **Dirección del equipo:** coordiné a 3 programadores en la revisión de los servidores y al especialista de redes en la conectividad.
+- **Dirección del equipo:** coordiné a 3 programadores en la revisión de los servidores y en la reprogramación de los procesos batch y servicios, y al especialista de redes en la conectividad.
 - **Gestión de riesgos:** definí el plan de contingencia y de vuelta atrás para cada oleada.
 - **Comunicación:** coordiné las ventanas de migración con los usuarios y reporté el avance a la gerencia.
 - **Cierre:** validé los resultados con los usuarios y documenté las lecciones aprendidas.
@@ -93,6 +95,8 @@ flowchart LR
     Q -->|Sí| A1["Instalación de la<br/>app de migración"]
     Q -->|No| U["Actualización de<br/>versión del servidor"]
     U --> A1
+    R --> BS["Rediseño de procesos batch<br/>y servicios<br/>VS 2010 → VS 2019"]
+    BS --> O2
     A1 --> P["Migración piloto"]
     P --> O1["Oleada 1<br/>servidores compatibles"]
     O1 --> O2["Oleada 2<br/>servidores actualizados"]
@@ -106,18 +110,21 @@ flowchart LR
 
 - **Servidores compatibles:** se les instaló la **app de migración** y pasaron a la nube en la primera oleada.
 - **Servidores no compatibles:** primero se **actualizó la versión** del servidor y luego se instaló la app para migrarlos en la segunda oleada.
+- **Procesos batch y servicios:** se **rediseñaron y reprogramaron de Visual Studio 2010 a Visual Studio 2019**, actualizando el código y sus dependencias para que se ejecutaran correctamente en los nuevos servidores. Cada proceso se probó antes de la oleada en la que se migraba su servidor.
 - **Servidor de Power BI:** se migró por separado, con un procedimiento específico para el **gateway de datos**: instalación del gateway en el nuevo servidor, recuperación de su configuración con la clave de recuperación, verificación de los orígenes de datos y prueba de las actualizaciones programadas de los reportes.
 
 <!-- COMPLETAR:
      - Cuántos servidores fueron compatibles y cuántos se actualizaron (por ejemplo: "7 y 3").
      - Desde qué versión a qué versión se actualizaron (por ejemplo: "Windows Server 2008 R2 a 2016").
-     - Si el procedimiento del gateway fue distinto al descrito, ajústalo. -->
+     - Si el procedimiento del gateway fue distinto al descrito, ajústalo.
+     - Cuántos procesos batch y servicios se migraron, a qué versión de .NET Framework pasaron y qué cambios
+       de diseño se hicieron (por ejemplo: "12 procesos batch y 4 servicios Windows, de .NET 4.0 a 4.8"). -->
 
 ---
 
 ## 🗂️ Dirección del proyecto
 
-El proyecto se planificó en **6 semanas (27 días hábiles)**. Para el control del plazo se usó un cronograma con **ruta crítica**, y la migración se ejecutó **por oleadas** para limitar el impacto en la operación.
+El proyecto se planificó en **6 semanas (28 días hábiles)**. Para el control del plazo se usó un cronograma con **ruta crítica**, y la migración se ejecutó **por oleadas** para limitar el impacto en la operación.
 
 <!-- COMPLETAR: las duraciones son una propuesta coherente con un proyecto de este tamaño.
      Ajústalas a lo que realmente ocurrió. Si cambias una, avísame y recalculo la ruta crítica
@@ -130,7 +137,8 @@ El proyecto se planificó en **6 semanas (27 días hábiles)**. Para el control 
 | Gerencia (sponsor) | Reducir riesgos y costos de infraestructura sin afectar la operación | Alta | Reporte semanal de avance y riesgos |
 | Usuarios de aduanas, logística y almacén | Que sus sistemas sigan funcionando | Media | Ventanas de migración acordadas y validación tras cada oleada |
 | Usuarios de reportes de Power BI | Reportes actualizados a tiempo | Media | Validación de las actualizaciones programadas |
-| Equipo de programadores (3) | Claridad en la revisión y en las tareas | Media | Checklist de revisión por servidor |
+| Equipo de programadores (3) | Claridad en la revisión y en la reprogramación | Media | Checklist de revisión por servidor y backlog de procesos a migrar |
+| Responsables de los procesos batch | Que los procesos sigan ejecutándose a tiempo | Media | Validación de cada proceso migrado antes de su oleada |
 | Especialista de redes | Conectividad segura con la nube | Media | Participación en el diseño de red desde el inicio |
 | Proveedor de nube | Configuración correcta del entorno de destino | Media | Coordinación técnica en el piloto |
 
@@ -151,6 +159,7 @@ flowchart TD
     G3 --> G31["3.1 Diseño de red y conectividad"]
     G3 --> G32["3.2 Actualización de versión"]
     G3 --> G33["3.3 Instalación de la app de migración"]
+    G3 --> G34["3.4 Procesos batch y servicios<br/>VS 2010 → VS 2019"]
     G4 --> G41["4.1 Piloto"]
     G4 --> G42["4.2 Oleada 1"]
     G4 --> G43["4.3 Oleada 2"]
@@ -175,7 +184,7 @@ gantt
     section Gestión
     A · Kick-off, alcance e inventario       :crit, a, 2024-01-08, 2d
     Inventario aprobado                       :milestone, m1, 2024-01-09, 0d
-    M · Cierre y lecciones aprendidas        :crit, m, 2024-02-13, 1d
+    M · Cierre y lecciones aprendidas        :crit, m, 2024-02-14, 1d
 
     section Evaluación
     B · Revisión de los 10 servidores        :crit, b, 2024-01-10, 5d
@@ -185,19 +194,20 @@ gantt
     section Preparación
     C · Diseño de red y conectividad         :c, 2024-01-10, 4d
     E · Actualización de versión             :e, 2024-01-19, 5d
-    F · Instalación de la app de migración   :crit, f, 2024-01-19, 3d
+    F · Instalación de la app de migración   :f, 2024-01-19, 3d
+    N · Batch y servicios VS 2010 a VS 2019  :crit, n, 2024-01-19, 10d
 
     section Migración
-    G · Migración piloto                     :crit, g, 2024-01-24, 2d
+    G · Migración piloto                     :g, 2024-01-24, 2d
     Piloto exitoso                            :milestone, m3, 2024-01-25, 0d
-    H · Oleada 1 - servidores compatibles   :crit, h, 2024-01-26, 4d
-    I · Oleada 2 - servidores actualizados  :crit, i, 2024-02-01, 4d
+    H · Oleada 1 - servidores compatibles   :h, 2024-01-26, 4d
+    I · Oleada 2 - servidores actualizados  :crit, i, 2024-02-02, 4d
     J · Servidor de Power BI y gateway       :j, 2024-02-01, 2d
 
     section Cierre
-    K · Pruebas con usuarios                 :crit, k, 2024-02-07, 3d
-    L · Corte final y apagado on-premise     :crit, l, 2024-02-12, 1d
-    Corte final                               :milestone, m6, 2024-02-12, 0d
+    K · Pruebas con usuarios                 :crit, k, 2024-02-08, 3d
+    L · Corte final y apagado on-premise     :crit, l, 2024-02-13, 1d
+    Corte final                               :milestone, m6, 2024-02-13, 0d
 ```
 
 ### 4. Red de actividades y ruta crítica
@@ -207,6 +217,7 @@ flowchart LR
     A["A · Kick-off e inventario<br/>2 d"] --> B["B · Revisión de servidores<br/>5 d"]
     A --> C["C · Red y conectividad<br/>4 d"]
     B --> D["D · Plan de oleadas<br/>2 d"]
+    D --> N["N · Batch y servicios<br/>VS 2010 → 2019<br/>10 d"]
     D --> E["E · Actualización de versión<br/>5 d"]
     D --> F["F · App de migración<br/>3 d"]
     F --> G["G · Piloto<br/>2 d"]
@@ -214,34 +225,36 @@ flowchart LR
     G --> H["H · Oleada 1<br/>4 d"]
     H --> I["I · Oleada 2<br/>4 d"]
     E --> I
+    N --> I
     H --> J["J · Power BI y gateway<br/>2 d"]
     I --> K["K · Pruebas con usuarios<br/>3 d"]
     J --> K
     K --> L["L · Corte final<br/>1 d"]
     L --> M["M · Cierre<br/>1 d"]
     classDef crit fill:#fde2e1,stroke:#d1242f,stroke-width:2px,color:#1f2328
-    class A,B,D,F,G,H,I,K,L,M crit
+    class A,B,D,N,I,K,L,M crit
 ```
 
-**Ruta crítica: A → B → D → F → G → H → I → K → L → M = 27 días hábiles.**
+**Ruta crítica: A → B → D → N → I → K → L → M = 28 días hábiles.**
 
-La revisión de los servidores (B) está en la ruta crítica: un retraso del equipo de programadores movía directamente la fecha de entrega. En cambio, el diseño de red (C) tenía **6 días de holgura**, la actualización de versión (E) **4 días** y la migración de Power BI (J) **2 días**.
+La **reprogramación de los procesos batch y servicios (N)** marcó el ritmo del proyecto: con 10 días, era la actividad más larga y estaba en la ruta crítica, porque la segunda oleada no podía migrarse hasta tener esos procesos funcionando en Visual Studio 2019. La revisión de servidores (B) también era crítica. En cambio, el frente de la oleada 1 (F, G, H) tenía **1 día de holgura**, la migración de Power BI (J) **3 días**, la actualización de versión (E) **5 días** y el diseño de red (C) **7 días**.
 
 | Act. | Actividad | Dur. (d) | Predecesoras | IT | FT | IL | FL | Holgura |
 |:---:|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | **A** | **Kick-off, alcance e inventario inicial** | 2 | — | 0 | 2 | 0 | 2 | **0** |
 | **B** | **Revisión técnica de los 10 servidores** | 5 | A | 2 | 7 | 2 | 7 | **0** |
-| C | Diseño de red y conectividad con la nube | 4 | A | 2 | 6 | 8 | 12 | 6 |
+| C | Diseño de red y conectividad con la nube | 4 | A | 2 | 6 | 9 | 13 | 7 |
 | **D** | **Clasificación de servidores y plan de oleadas** | 2 | B | 7 | 9 | 7 | 9 | **0** |
-| E | Actualización de versión en servidores no compatibles | 5 | D | 9 | 14 | 13 | 18 | 4 |
-| **F** | **Instalación de la app de migración** | 3 | D | 9 | 12 | 9 | 12 | **0** |
-| **G** | **Migración piloto (1 servidor)** | 2 | C, F | 12 | 14 | 12 | 14 | **0** |
-| **H** | **Oleada 1: servidores compatibles** | 4 | G | 14 | 18 | 14 | 18 | **0** |
-| **I** | **Oleada 2: servidores actualizados** | 4 | E, H | 18 | 22 | 18 | 22 | **0** |
-| J | Migración del servidor de Power BI y gateway | 2 | H | 18 | 20 | 20 | 22 | 2 |
-| **K** | **Pruebas y validación con usuarios** | 3 | I, J | 22 | 25 | 22 | 25 | **0** |
-| **L** | **Corte final y apagado on-premise** | 1 | K | 25 | 26 | 25 | 26 | **0** |
-| **M** | **Cierre y lecciones aprendidas** | 1 | L | 26 | 27 | 26 | 27 | **0** |
+| **N** | **Rediseño y reprogramación de procesos batch y servicios (VS 2010 → VS 2019)** | 10 | D | 9 | 19 | 9 | 19 | **0** |
+| E | Actualización de versión en servidores no compatibles | 5 | D | 9 | 14 | 14 | 19 | 5 |
+| F | Instalación de la app de migración | 3 | D | 9 | 12 | 10 | 13 | 1 |
+| G | Migración piloto (1 servidor) | 2 | C, F | 12 | 14 | 13 | 15 | 1 |
+| H | Oleada 1: servidores compatibles | 4 | G | 14 | 18 | 15 | 19 | 1 |
+| **I** | **Oleada 2: servidores actualizados** | 4 | E, H, N | 19 | 23 | 19 | 23 | **0** |
+| J | Migración del servidor de Power BI y gateway | 2 | H | 18 | 20 | 21 | 23 | 3 |
+| **K** | **Pruebas y validación con usuarios** | 3 | I, J | 23 | 26 | 23 | 26 | **0** |
+| **L** | **Corte final y apagado on-premise** | 1 | K | 26 | 27 | 26 | 27 | **0** |
+| **M** | **Cierre y lecciones aprendidas** | 1 | L | 27 | 28 | 27 | 28 | **0** |
 
 <sub>IT/FT: inicio y fin más tempranos · IL/FL: inicio y fin más tardíos · en días hábiles desde el inicio del proyecto. En negrita, las actividades críticas.</sub>
 
@@ -253,7 +266,8 @@ La revisión de los servidores (B) está en la ruta crítica: un retraso del equ
 | Plan de oleadas aprobado | 2 | Servidores clasificados en compatibles y por actualizar |
 | Piloto exitoso | 3 | Primer servidor operando en la nube y validado |
 | Power BI y gateway en la nube | 4 | Reportes actualizándose desde el nuevo gateway |
-| Validación aprobada | 5 | Usuarios conformes con todos los sistemas |
+| Procesos batch y servicios migrados | 4 | Procesos compilados en VS 2019 y probados con éxito |
+| Validación aprobada | 6 | Usuarios conformes con todos los sistemas |
 | Corte final | 6 | Servidores on-premise apagados |
 
 ### 6. Matriz RACI
@@ -268,6 +282,7 @@ La revisión de los servidores (B) está en la ruta crítica: un retraso del equ
 | Diseño de red y conectividad | **A** | I | R | | |
 | Actualización de versión | **A** | R | C | I | |
 | Instalación de la app de migración | **A** | R | C | | |
+| Rediseño y reprogramación de procesos batch y servicios | **A** | R | | C | |
 | Migración por oleadas | **A** | R | R | I | I |
 | Migración de Power BI y gateway | **A** | R | C | C | I |
 | Pruebas y validación | **A** | C | C | R | I |
@@ -293,7 +308,8 @@ La revisión de los servidores (B) está en la ruta crítica: un retraso del equ
 | R3 | Reportes de Power BI sin actualizar tras mover el gateway | Media | Alto | Mitigar | Respaldo de la clave de recuperación y prueba de las actualizaciones programadas |
 | R4 | Dependencias entre sistemas no documentadas | Media | Medio | Mitigar | Checklist de dependencias en la revisión de cada servidor y migración piloto |
 | R5 | Problemas de conectividad con la nube | Media | Alto | Mitigar | Diseño de red validado antes del piloto |
-| R6 | Retraso en la revisión de servidores, que está en la ruta crítica | Media | Medio | Mitigar | Reparto de servidores entre los 3 programadores y seguimiento diario |
+| R6 | Retraso en la reprogramación de procesos batch y servicios, que está en la ruta crítica | Media | Alto | Mitigar | Reparto de procesos entre los 3 programadores, priorización por criticidad y seguimiento diario |
+| R7 | Procesos batch con resultados distintos tras la reprogramación | Media | Alto | Mitigar | Comparar las salidas del proceso antiguo y del nuevo con los mismos datos antes de migrar |
 
 ### 9. Plan de contingencia y vuelta atrás
 
@@ -311,6 +327,7 @@ La revisión de los servidores (B) está en la ruta crítica: un retraso del equ
 - **10 servidores migrados** a la nube, incluido el servidor de Power BI.
 - **Gateway de datos operativo** en la nube, con los reportes de gerencia actualizándose con normalidad.
 - **Servidores no compatibles actualizados**, lo que además redujo riesgos de seguridad por versiones antiguas.
+- **Procesos batch y servicios modernizados** de Visual Studio 2010 a Visual Studio 2019, más fáciles de mantener y compatibles con la nueva plataforma.
 - Migración realizada **por oleadas, sin detener la operación** de aduanas, logística y almacén.
 
 <!-- COMPLETAR con cifras si las tienes. Ejemplos:
@@ -324,6 +341,7 @@ La revisión de los servidores (B) está en la ruta crítica: un retraso del equ
 ## 💡 Lecciones aprendidas
 
 - **Revisar antes de migrar evita sorpresas:** la revisión técnica permitió detectar a tiempo los servidores no compatibles.
+- **Migrar servidores también es migrar código:** los procesos batch y servicios antiguos fueron la actividad más larga; identificarlos en la revisión inicial permitió planificarlos a tiempo.
 - **Un piloto vale más que cualquier plan:** validar el procedimiento con un servidor redujo el riesgo de las oleadas.
 - **El gateway de Power BI requiere su propio plan:** guardar la clave de recuperación y probar las actualizaciones es indispensable.
 - **La comunicación con los usuarios es parte de la migración:** las ventanas acordadas y la validación después de cada oleada generaron confianza.
